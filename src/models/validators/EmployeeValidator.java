@@ -19,7 +19,7 @@ public class EmployeeValidator {
             errors.add(code_error);
         }
         
-        String name_error = _validateName(e.getName(), code_duplicate_check_flag);
+        String name_error = _validateName(e.getName());
         if (name_error.equals("") {
             errors.add(name_error);
         }
@@ -29,7 +29,7 @@ public class EmployeeValidator {
             errors.add(password_error);
         }
         
-        return errors
+        return errors;
     }
     
     // 社員番号
