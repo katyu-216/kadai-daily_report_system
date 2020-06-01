@@ -1,7 +1,7 @@
 package models.validators;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -15,17 +15,17 @@ public class EmployeeValidator {
         List<String> errors = new ArrayList<String>();
         
         String code_error = _validateCode(e.getCode(), code_duplicate_check_flag);
-        if(code_error.equals("")) {
+        if(!code_error.equals("")) {
             errors.add(code_error);
         }
         
         String name_error = _validateName(e.getName());
-        if (name_error.equals("") {
+        if (!name_error.equals("")) {
             errors.add(name_error);
         }
         
         String password_error = _validatePassword(e.getPassword(), password_check_flag);
-        if(password_error.equals("")) {
+        if(!password_error.equals("")) {
             errors.add(password_error);
         }
         
@@ -38,7 +38,7 @@ public class EmployeeValidator {
             return "社員番号を入力してください。";
         }
         
-        if(code_daplicate_check_flag) {
+        if(code_duplicate_check_flag) {
             EntityManager em = DBUtil.createEntityManager();
             long employees_count = (long)em.createNamedQuery("checkRegisteredCode" , Long.class)
                                             .setParameter("code", code)
@@ -51,21 +51,23 @@ public class EmployeeValidator {
         
         return "";
         
-        private static String _validateName(String name) {
-            if(name == null || name.equals("")){
+    }
+        
+     // 社員名の必須入力チェック
+     private static String _validateName(String name) {
+            if(name == null || name.equals("")) {
                 return "氏名を入力してください。";
             }
-            
             return "";
-        }
-        
-        private static String _validatePassword(String password, Boiiean password _check_flag) {
+     }
+     
+
+        // パスワードの必須入力チェック
+    private static String _validatePassword(String password, Boolean password_check_flag) {
+            // パスワードを変更する場合のみ実行
             if(password_check_flag && (password == null || password.equals(""))) {
                 return "パスワードを入力してください。";
             }
-            
             return "";
-        }
     }
-    
 }
