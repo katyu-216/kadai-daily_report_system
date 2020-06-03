@@ -89,7 +89,7 @@ public class Report {
         return content;
     }
 
-    public void setContact(String content) {
+    public void setContent(String content) {
         this.content = content;
     }
 
