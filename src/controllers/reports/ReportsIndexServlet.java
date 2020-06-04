@@ -53,7 +53,7 @@ public class ReportsIndexServlet extends HttpServlet {
 		em.close();
 		
 		request.setAttribute("reports_count", reports_count);
-		request.setAttribute("rports", reports);
+		request.setAttribute("reports", reports);
 		request.setAttribute("page", page);
 		if(request.getSession().getAttribute("flush") != null) {
 		    request.setAttribute("flush", request.getSession().getAttribute("flush"));
